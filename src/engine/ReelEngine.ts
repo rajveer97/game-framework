@@ -3,17 +3,43 @@ import { Reel } from './Reel';
 import type { SpinResult } from 'types/SpinResult';
 import { LayoutConstant } from '../constants/LayoutConstant';
 import { GameConstant } from '../constants/GameConstant';
+import { Assets } from '../core/Assets';
+import { AssetKeys } from '../constants/AssetKeys';
 
 export class ReelEngine {
-    public container = new PIXI.Container();
+    public reelContainer: PIXI.Container;
+    public container: PIXI.Container;
+
     private reels: Reel[] = [];
+    private reelFrame!: PIXI.Sprite;
 
     constructor(private app: PIXI.Application) {
+        this.reelContainer = new PIXI.Container();
+        this.reelContainer.pivot.set(0.5)
+
+        this.container = new PIXI.Container();
+
+        this.reelContainer.name = "reelContainer";
+        this.container.name = "container";
+
+        this.addReelFrame();
+
         this.createReels();
         this.createMask();
+        this.resizeReelFrame();
+    }
+
+    private addReelFrame() {
+        const texture = Assets.getTexture(AssetKeys.REEL_FRAME);
+        this.reelFrame = new PIXI.Sprite(texture);
+        this.reelFrame.anchor.set(0.5);
+        // this.reelFrame.x = LayoutConstant.REEL_FRAME_X;
+        // this.reelFrame.y = LayoutConstant.REEL_FRAME_Y;
+        this.reelContainer.addChild(this.reelFrame);
     }
 
     private createReels() {
+        this.reelContainer.addChild(this.container);
         for (let i = 0; i < GameConstant.REELS; i++) {
             const reel = new Reel(i, this.app.renderer as PIXI.Renderer);
 
@@ -68,5 +94,17 @@ export class ReelEngine {
 
     update(delta: number) {
         this.reels.forEach(r => r.update(delta));
+    }
+
+    public resizeReelFrame(): void {
+
+        const { width, height } = this.app.screen;
+
+        const scale = Math.min(
+            width / this.reelContainer.width,
+            height / this.reelContainer.height
+        );
+        this.reelContainer.scale.set(scale);
+        this.reelContainer.position.set(width * 0.5, height * 0.5);
     }
 }

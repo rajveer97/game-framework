@@ -1,7 +1,9 @@
 export const AssetKeys = {
   // Images
-  SPIN_BUTTON: 'spinBtn',
   BACKGROUND: 'bg',
+  LOGO: 'logo',
+  REEL_FRAME: 'reelFrame',
+  SPIN_BUTTON: 'spinBtn',
 
   // Symbols (from atlas)
   SYMBOL_A: 'symbol_A',

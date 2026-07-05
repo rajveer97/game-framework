@@ -84,7 +84,7 @@ export class HUD {
     private createSpinButton() {
         const texture = Assets.getTexture(AssetKeys.SPIN_BUTTON);
         const button = new PIXI.Sprite(texture);
-        button.scale.set(0.05);
+        // button.scale.set(0.05);
         button.anchor.set(0.5);
         button.x = LayoutConstant.SPIN_BUTTON_X;
         button.y = LayoutConstant.SPIN_BUTTON_Y;

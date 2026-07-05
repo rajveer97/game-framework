@@ -1,7 +1,11 @@
 export const AssetConfig = {
   images: [
-    { key: 'spinBtn', url: '/assets/images/spinBtn.png' },
-    { key: 'bg', url: '/assets/images/bg.svg' },
+    { key: 'bg', url: '/assets/ui/background.png' },
+    { key: 'logo', url: '/assets/ui/logo.png' },
+    { key: 'reelFrame', url: '/assets/ui/reelFrame.png' },
+
+
+    { key: 'spinBtn', url: '/assets/buttons/Spin.png' },
 
     { key: 'symbol_A', url: '/assets/symbols/a.png' },
     { key: 'symbol_K', url: '/assets/symbols/k.png' },

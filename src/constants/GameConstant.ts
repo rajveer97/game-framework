@@ -1,8 +1,8 @@
 import { AssetKeys } from '../constants/AssetKeys';
 
 export class GameConstant {
-    static readonly WIDTH = 1280;
-    static readonly HEIGHT = 720;
+    static readonly WIDTH = 1920;
+    static readonly HEIGHT = 1080;
 
     static readonly REELS = 5;
     static readonly ROWS = 3;

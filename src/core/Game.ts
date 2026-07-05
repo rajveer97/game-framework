@@ -7,6 +7,7 @@ import { WinLayer } from '../ui/WinLayer';
 import { FreeSpinsManager } from '../features/freeSpins/FreeSpinsManager';
 import { Background } from '../ui/Background';
 import { GameLogo } from '../ui/GameLogo';
+import { ResizeManager } from '../ui/ResizeManager';
 
 // Commands
 import { CommandQueue } from './commands/CommandQueue';
@@ -31,6 +32,7 @@ export class Game {
   private freeSpinsManager!: FreeSpinsManager;
 
   private isSpinning = false;
+  private resizeManager!: ResizeManager;
 
   constructor(private app: PIXI.Application) { }
 
@@ -61,7 +63,7 @@ export class Game {
 
     // Reel Engine
     this.reelEngine = new ReelEngine(this.app);
-    gameContainer.addChild(this.reelEngine.container);
+    gameContainer.addChild(this.reelEngine.reelContainer);
 
     // Win Layer
     this.winLayer = new WinLayer();
@@ -70,6 +72,8 @@ export class Game {
     // HUD
     this.hud = new HUD(this.bus);
     gameContainer.addChild(this.hud.container);
+
+    this.resizeManager = new ResizeManager(this.background, this.gameLogo, this.reelEngine);
   }
 
   private registerEvents() {
@@ -124,7 +128,6 @@ export class Game {
 
   private onResize = () => {
     this.app.renderer.resize(window.innerWidth, window.innerHeight);
-    this.background.resize();
-    this.gameLogo.resize();
+    this.resizeManager.resize();
   };
 }

@@ -8,30 +8,20 @@ export class Background {
 
   constructor(private app: PIXI.Application) {
     this.create();
+    this.resizeBackground();
   }
 
   private create() {
     const texture = Assets.getTexture(AssetKeys.BACKGROUND);
     this.bgSprite = new PIXI.Sprite(texture);
-
-    // start at top-left
-    this.bgSprite.x = 0;
-    this.bgSprite.y = 0;
-
+    this.bgSprite.anchor.set(0.5);
     this.container.addChild(this.bgSprite);
-
-    this.resize();
   }
 
-  resize() {
-  const screen = this.app.screen;
-  const scaleX = screen.width / this.bgSprite.texture.width;
-  const scaleY = screen.height / this.bgSprite.texture.height;
-  const scale = Math.max(scaleX, scaleY);
-  this.bgSprite.scale.set(scale);
-
-  // center it
-  this.bgSprite.x = (screen.width - this.bgSprite.width) / 2;
-  this.bgSprite.y = (screen.height - this.bgSprite.height) / 2;
+  public resizeBackground(): void {
+    const { width, height } = this.app.screen;
+    this.bgSprite.position.set(width * 0.5,height * 0.5);
+    const scale = Math.max(width / this.bgSprite.texture.width,height / this.bgSprite.texture.height);
+    this.bgSprite.scale.set(scale);
   }
 }

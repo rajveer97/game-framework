@@ -1,8 +1,8 @@
 import * as PIXI from "pixi.js";
 
 export class LayoutConstant {
-    static readonly REEL_START_X = 420;
-    static readonly REEL_START_Y = 170;
+    static readonly REEL_START_X = 0;
+    static readonly REEL_START_Y = 0;
     static readonly REEL_GAP = 120;
 
     static readonly SYMBOL_HEIGHT = 110;
@@ -16,6 +16,9 @@ export class LayoutConstant {
 
     static readonly FREE_SPINS_TEXT_X = 870;
     static readonly FREE_SPINS_TEXT_Y = 520;
+
+    static readonly REEL_FRAME_X = 265;
+    static readonly REEL_FRAME_Y = 54;
 
     static readonly MAIN_TEXT_STYLE = new PIXI.TextStyle({
         fontFamily: "Comic Sans MS",

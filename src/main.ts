@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import { Assets } from './core/Assets';
 import { Game } from './core/Game';
 import { GameConstant } from './constants/GameConstant';
+import { DebugManager } from './debug/DebugManager';
 
 (async () => {
   const app = new PIXI.Application({
@@ -21,8 +22,7 @@ import { GameConstant } from './constants/GameConstant';
     console.log(`Loading: ${Math.round(progress * 100)}%`);
   });
 
-
-
   const game = new Game(app);
-  game.init();
+  await game.init();
+  DebugManager.initialize(app);
 })();
